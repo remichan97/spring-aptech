@@ -10,6 +10,7 @@
     <title>Document</title>
 </head>
 <body>
+    <a href="/add">Add new</a>
     <table style="border: thin solid black;">
         <tr>
             <th>Roll No.</th>
