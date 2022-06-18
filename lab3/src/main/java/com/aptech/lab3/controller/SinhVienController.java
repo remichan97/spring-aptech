@@ -1,6 +1,7 @@
 package com.aptech.lab3.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 import javax.validation.Valid;
@@ -47,10 +48,34 @@ public class SinhVienController {
         return "add";
     }
 
+    @GetMapping("/update")
+    public String updateData(@RequestParam(name = "roll") String roll, Model model) {
+        SinhVien sinhVien = repo.findById(roll).get();
+        model.addAttribute("sv", sinhVien);
+        return "update";
+    }
+
     @PostMapping("/AddStudent")
-    public String addStudent(@ModelAttribute(name = "sv") @Valid SinhVien sv, BindingResult err) {
+    public String addStudent(@ModelAttribute(name = "sv") @Valid SinhVien sv, BindingResult err, Model model) {
         if (err.hasErrors()) {
             return "add";
+        }
+
+        Optional<SinhVien> opt = repo.findById(sv.getRoll());
+
+        if (opt.isPresent()) {
+            model.addAttribute("error", "Roll number " + sv.getRoll() + " already exists.");
+            return "add";
+        }
+
+        repo.save(sv);
+        return "redirect:/";
+    }
+
+    @PostMapping("/UpdateStudent")
+    public String updateStudent(@ModelAttribute(name = "sv") @Valid SinhVien sv, BindingResult err) {
+        if (err.hasErrors()) {
+            return "update";
         }
 
         repo.save(sv);

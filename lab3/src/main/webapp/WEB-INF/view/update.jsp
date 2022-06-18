@@ -10,11 +10,9 @@
 	<title>Document</title>
 </head>
 <body>
-	<span style="color: red;">${error}</span>
-	<form:form action="AddStudent" modelAttribute="sv">
+	<form:form action="UpdateStudent" modelAttribute="sv">
 		<form:label path="roll" >Roll Number</form:label>
-		<form:input path="roll" />
-		<form:errors path="roll"/><br />
+		<form:input path="roll" readonly="true"/><br />
 
 		<form:label path="fullName" >Student name</form:label>
 		<form:input path="fullName" />
@@ -24,7 +22,7 @@
 		<form:input path="className" />
 		<form:errors path="className"/><br />
 
-		<input type="submit" value="Add"/>
+		<input type="submit" value="Update"/>
 		<a href="/">Return</a>
 	</form:form>
 </body>

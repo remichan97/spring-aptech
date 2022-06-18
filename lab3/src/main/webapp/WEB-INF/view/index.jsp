@@ -16,6 +16,7 @@
             <th>Roll No.</th>
             <th>Name</th>
             <th>Class Name</th>
+            <th>Update</th>
             <th>Delete?</th>
         </tr>
         <c:forEach items="${sinhViens}" var="sv">
@@ -23,7 +24,8 @@
                 <td>${sv.roll}</td>
                 <td>${sv.fullName}</td>
                 <td>${sv.className}</td>
-                <td><a href="delete?roll=${sv.roll}">Delete</a></td>
+                <td><a href="update?roll=${sv.roll}">Update</a></td>
+                <td><a href="delete?roll=${sv.roll}" onclick="return confirm('Would you like to delete this student information?')">Delete</a></td>
             </tr>
         </c:forEach>
     </table>
